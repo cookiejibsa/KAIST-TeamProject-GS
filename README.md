@@ -92,6 +92,7 @@ cp server/.env.example server/.env
 
 ```env
 GEMINI_API_KEY=여기에_Gemini_API_키_입력
+GEMINI_MODEL=gemini-2.5-flash
 JWT_SECRET=32자_이상의_길고_랜덤한_문자열
 DATA_DIR=
 PORT=3001
@@ -137,6 +138,7 @@ npm start
 | `GET` | `/api/videos` | 영상 검색 기록 조회 |
 | `POST` | `/api/videos` | 영상 검색 기록 저장 |
 | `POST` | `/api/recommend/ai` | AI 메뉴 추천 |
+| `POST` | `/api/recommend/videos` | AI 영상 검색어 추천 |
 | `GET` | `/api/health` | 서버 상태 확인 |
 
 ## Railway 배포
@@ -159,6 +161,7 @@ JWT_SECRET=32자_이상의_길고_랜덤한_문자열
 
 ```env
 GEMINI_API_KEY=Gemini_API_키
+GEMINI_MODEL=gemini-2.5-flash
 CLIENT_ORIGIN=https://별도_프론트엔드_도메인
 DATA_DIR=/data
 ```

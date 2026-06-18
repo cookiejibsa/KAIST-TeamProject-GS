@@ -68,13 +68,29 @@ export default function Home() {
       })
       const picked = MENUS.find((m) => m.id === data.menuId)
       if (picked) {
-        setResult({ picked, aiReason: data.reason, photoUrl: data.photoUrl, source: data.source })
+        setResult({
+          picked,
+          aiReason: data.reason,
+          photoUrl: data.photoUrl,
+          source: data.source,
+          fallbackNotice: data.source === 'local'
+            ? 'Gemini 호출이 되지 않아 로컬 추천으로 보여드려요.'
+            : null,
+        })
       } else {
-        setResult(recommend({ mood, weather, budgetMax }, eatLogs, []))
+        setResult({
+          ...recommend({ mood, weather, budgetMax }, eatLogs, []),
+          source: 'local',
+          fallbackNotice: 'Gemini 응답 메뉴를 확인하지 못해 로컬 추천으로 보여드려요.',
+        })
       }
     } catch {
       // 서버 오류 시 로컬 알고리즘으로 폴백
-      setResult(recommend({ mood, weather, budgetMax }, eatLogs, []))
+      setResult({
+        ...recommend({ mood, weather, budgetMax }, eatLogs, []),
+        source: 'local',
+        fallbackNotice: 'Gemini 호출이 되지 않아 로컬 추천으로 보여드려요.',
+      })
     } finally {
       setAiLoading(false)
       setTimeout(
@@ -287,6 +303,12 @@ function ResultBlock({ result, inputs, user, onReroll, onRecord, savedMsg }) {
 
   return (
     <div className="space-y-3">
+      {result.fallbackNotice && (
+        <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-medium text-amber-700">
+          {result.fallbackNotice}
+        </p>
+      )}
+
       <TiltCard className="card animate-pop-in overflow-hidden">
         <MenuHero menu={m} eyebrow="오늘의 추천" subtitle={reason} photoUrl={result.photoUrl} />
 

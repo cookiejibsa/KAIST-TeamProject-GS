@@ -1,10 +1,11 @@
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') })
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const fs = require('fs')
-const path = require('path')
 
 const app = express()
 const parseOrigins = (value) =>

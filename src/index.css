@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    min-height: 100vh;
+  }
+  ::selection {
+    background: rgba(245, 78, 58, 0.18);
+    color: #0f172a;
+  }
+}
+
+@layer components {
+  /* 깔끔한 화이트 카드 */
+  .card {
+    @apply rounded-3xl border border-slate-200/80 bg-white shadow-[0_2px_20px_-6px_rgba(15,23,42,0.08)];
+  }
+  /* 호버 시 살짝 떠오르는 인터랙티브 카드 */
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_16px_40px_-16px_rgba(245,78,58,0.25)];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 font-semibold transition duration-200 active:scale-95 disabled:opacity-40 disabled:active:scale-100;
+  }
+  /* 그라데이션 강조 버튼 */
+  .btn-primary {
+    @apply btn relative overflow-hidden text-white;
+    background-image: linear-gradient(120deg, #ff8a4c, #f54e3a 55%, #f43f5e);
+    box-shadow: 0 10px 30px -10px rgba(245, 78, 58, 0.55);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 14px 38px -10px rgba(245, 78, 58, 0.7);
+  }
+  /* 버튼 위로 지나가는 shine */
+  .btn-primary::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+    transition: transform 0.7s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(100%);
+  }
+  /* 흰색 보조 버튼 */
+  .btn-ghost {
+    @apply btn border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50;
+  }
+
+  .chip {
+    @apply rounded-2xl px-4 py-2.5 text-sm font-medium transition duration-200 active:scale-95;
+  }
+  .chip-on {
+    @apply chip border border-transparent text-white shadow-[0_8px_22px_-8px_rgba(245,78,58,0.6)];
+    background-image: linear-gradient(120deg, #ff8a4c, #f54e3a);
+  }
+  .chip-off {
+    @apply chip border border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-600;
+  }
+
+  /* 그라데이션 텍스트 */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #ff8a4c, #f54e3a 60%, #f43f5e);
+  }
+  /* 흐르는 그라데이션 텍스트 (큰 타이틀용) */
+  .text-gradient-flow {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #ff8a4c, #f54e3a, #f43f5e, #ff8a4c);
+    background-size: 200% auto;
+    @apply animate-shimmer;
+  }
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.12);
+  border-radius: 9999px;
+  border: 3px solid #fff;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

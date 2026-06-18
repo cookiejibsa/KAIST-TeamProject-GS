@@ -1,0 +1,36 @@
+{
+  "name": "honbap-recommender",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "혼밥 메뉴 추천 프로그램 - 지금 내 상태 기반 개인화 추천",
+  "scripts": {
+    "dev": "concurrently -n 서버,프론트 -c cyan,magenta \"cd server && node --watch index.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "express-rate-limit": "^8.5.2",
+    "framer-motion": "^11.18.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "recharts": "^2.12.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^10.0.3",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "vite": "^8.0.16"
+  }
+}
